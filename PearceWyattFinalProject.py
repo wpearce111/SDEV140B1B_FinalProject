@@ -13,7 +13,8 @@ from breezypythongui import EasyFrame # Lambert's shell
 from item import Item                 # Import Item class for itemList
 import re                             # Import regular expressions for validating the date input field
 from tkinter import PhotoImage        # Import class for image display
-from datetime import datetime         # Import dateTime for lastUpdated footer label
+import os                             # Import os for getting the files lastModified value for footer label
+from datetime import datetime         # Import dateTime for lastModified footer label
 
 # Global list of item objects
 itemList = []
@@ -75,8 +76,11 @@ class TimeForge(EasyFrame):
         # Footer labels
         self.footer1 = self.panel4.addLabel(text="Created by:", row=0, column=0, background="grey90")
         self.footer2 = self.panel4.addLabel(text="Wyatt H. Pearce", row=0, column=1, background="grey90")
-        self.footer3 = self.panel4.addLabel(text="Last Updated: 10/9/2023", row=0, column=2, background="grey90")
-        self.footer4 = self.panel4.addLabel(text="Version: 1.0", row=0, column=3, background="grey90")
+        self.footer4 = self.panel4.addLabel(text="Version: 1.0", row=0, column=2, background="grey90")
+        # LastUpdated footer label
+        timeStamp = os.path.getmtime(os.path.basename(os.path.abspath(__file__)))                                          # Get the file's modification timestamp
+        lastUpdatedDate = datetime.fromtimestamp(timeStamp).strftime("%m/%d/%Y")                                           # Convert the timestamp to a human-readable date format
+        self.footer3 = self.panel4.addLabel(text=f"Last Updated: {lastUpdatedDate}", row=0, column=3, background="grey90") # Displays the currentDate variable
 
         # Updates item display to match itemList[] (I do this once at the begining because data might have been loaded in)
         self.syncLists()

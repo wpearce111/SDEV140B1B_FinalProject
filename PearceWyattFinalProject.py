@@ -70,8 +70,8 @@ class TimeForge(EasyFrame):
         self.removeItemButton = self.panel3.addButton(text="Remove Item", row=0, column=1, state="disabled", command=lambda: self.removeItemFromList(self.selectedItemIndex))
         self.statusItemButton = self.panel3.addButton(text="Change Status", row=0, column=2, state="disabled", command=lambda: self.changeItemStatus(self.selectedItemIndex))
         self.saveItemButton = self.panel3.addButton(text="Save", row=0, column=3, state="disabled", command=self.saveChanges)
-        self.moveUpButton = self.panel3.addButton(text="Move Up", row=1, column=0, state="disabled", command=lambda: self.moveItem("up"))
-        self.moveDownButton = self.panel3.addButton(text="Move Down", row=1, column=1, state="disabled", command=lambda: self.moveItem("down"))
+        self.moveUpButton = self.panel3.addButton(text="Move Up", row=1, column=0, state="disabled", command=lambda: self.moveItem(self.selectedItemIndex, "up"))
+        self.moveDownButton = self.panel3.addButton(text="Move Down", row=1, column=1, state="disabled", command=lambda: self.moveItem(self.selectedItemIndex, "down"))
 
         # Footer labels
         self.footer1 = self.panel4.addLabel(text="Created by:", row=0, column=0, background="grey90")
